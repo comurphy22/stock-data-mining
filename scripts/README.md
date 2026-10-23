@@ -17,6 +17,18 @@ python scripts/validate_multiyear.py
 
 ---
 
+### `walk_forward_eval.py`
+Pooled walk-forward evaluation: one model trained on all 8 stocks, tested month by month on unseen data (thousands of predictions instead of ~20 per stock-year). Reports accuracy with 95% confidence intervals against baselines (always-up, majority class, yesterday's direction) and compares each model with and without politician features.
+
+```bash
+python scripts/walk_forward_eval.py              # fetch data, cache to data/walk_forward_panel.csv
+python scripts/walk_forward_eval.py --no-news    # if data/archive/ is not available
+python scripts/walk_forward_eval.py --use-cached-panel
+```
+**Output:** `results/walk_forward_{summary,comparisons,per_ticker,predictions}.csv`
+
+---
+
 ### `economic_backtest.py`
 Trading simulation with transaction costs.
 
